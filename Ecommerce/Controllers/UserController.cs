@@ -17,7 +17,7 @@ namespace Ecommerce.Controllers
         {
 
 
-
+            // changes made
             if (TempData["cart"] !=null)
             {
                 float x = 0;
