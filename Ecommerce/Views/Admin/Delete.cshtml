@@ -1,0 +1,13 @@
+﻿@model Ecommerce.Models.tbl_category
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+
+@using (Html.BeginForm("Delete", "Admin", FormMethod.Post))
+{
+    @Html.TextBoxFor(x => x.cat_name, new { @class = "form-control" })
+    <input type="submit" value="Delete" class="btn btn-danger" />
+}

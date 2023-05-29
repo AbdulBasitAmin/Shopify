@@ -1,0 +1,59 @@
+﻿@model Ecommerce.Models.product_details
+@{
+    ViewBag.Title = "ViewAdds";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+
+
+<h2>ViewAdds</h2>
+
+<div class="col-lg-8 col-md-8">
+
+    <div>
+        <h1> @Model.pro_name  <small> AD-ID : @Model.pro_id</small></h1>
+
+    </div>
+
+    <img src="@Url.Content(Model.pro_image)" style="width:250px;height:250px" />
+
+    <div>
+
+        <h1> Description</h1>
+
+        <p> @Model.pro_desc</p>
+    </div>
+
+    <table class="table table-bordered table-dark">
+
+        <tr>
+            <td> PRICE : </td>
+
+
+            <td>@Model.pro_price</td>
+        </tr>
+
+        <tr>
+            <td> CATEGORY : </td>
+            <td>@Model.cat_name</td>
+        </tr>
+        <tr>
+            <td> POSTED BY : </td>
+            <td>@Model.u_name <img src="@Url.Content(Model.pro_image)" style="width:40px" ; height:40px" /></td>
+
+
+        </tr>
+        <td colspan="2">
+            @if (Convert.ToInt32(Session["us_id"]) == Convert.ToInt32(Model.us_id_fk))
+            {
+                @Html.ActionLink("Close This ADD", "Add_Delete", new { @class = "btn btn-danger", id = Model.pro_id })
+
+            }
+
+        </td>
+
+
+
+    </table>
+	</div>

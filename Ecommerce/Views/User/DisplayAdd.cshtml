@@ -1,0 +1,79 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<Ecommerce.Models.tbl_product>
+
+
+@{
+    ViewBag.Title = "DisplayAdd";
+}
+
+<h2>DisplayAdd</h2>
+<div class="row" style="margin-bottom:40px">
+
+    <div class="col-lg-8 col-md-8">
+        @using (Html.BeginForm("DisplayAdd", "User"))
+        {
+
+            <div class="navbar-form">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Serach......." name="search" id="search" />
+                </div>
+                <button type="submit" class="btn btn-success"> SEARCH</button>
+            </div>
+
+        }
+
+    </div>
+
+    <div class="row">
+
+        @{
+            int x = 0;
+        }
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                x++;
+
+                <div class="col-lg-4 col-md-4" style="height:220px;margin-top:160px;width:auto">
+
+                    <img src="@Url.Content(item.pro_image)" style="height:130%;width:100%" />
+
+                    <br />
+
+
+                    <h4 style="color:#ff0000;text-align:center;margin-top:20px"> @Html.ActionLink(item.pro_name, "ViewAdds", new { id = item.pro_id }) </h4>
+
+
+                    <a class="btn btn-primary" href="@Url.Action("Add_to_Cart",new { id=item.pro_id})"> ADD TO CART</a>
+
+
+
+                </div>
+
+            }
+
+        }
+
+
+    </div>
+   
+</div>
+<div style="margin-top:370px">
+
+    <div id="container" style="margin-left:200px;margin-bottom:80px">
+        <p></p>
+        <p></p>
+
+
+        <div class="pagination" style="margin-left:400px">
+            Page @(Model.PageCount < Model.PageNumber ? 0:Model.PageNumber)
+            of @Model.PageCount @Html.PagedListPager(Model, page => Url.Action("View_Category", new { page }))
+
+            <h4> @x Result Found </h4>
+
+        </div>
+    </div>
+</div>
+
+

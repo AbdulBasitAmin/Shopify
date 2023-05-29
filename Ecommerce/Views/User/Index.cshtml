@@ -1,0 +1,92 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<Ecommerce.Models.tbl_category>
+
+
+
+@{
+    ViewBag.Title = "View_Category";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h2></h2>
+
+
+<img src="~/Content/img/b1.jpg" style="background-size:cover;margin-top:30px;height:500px" width="100%" />
+
+<hr />
+
+<div class="colh-lg-12" style="height:100px">
+
+    @if (TempData["msg"] !=null)
+    {
+        <div class="alert alert-success">
+
+            <strong> Success! </strong> @TempData["msg"]
+
+        </div>
+
+    }
+
+</div>
+
+
+@if (@TempData["total"] == null)
+{
+    <h4> Total Bill : 0 Rs</h4>
+}
+else
+{
+    <h4> Total Bill : @TempData["total"] Rs</h4>
+}
+
+
+
+<div class="col-lg-2 col-md-2 col-sm-2">
+    <h3>@Html.ActionLink("Check Out","checkout","User")</h3>
+
+</div>
+
+
+
+<h3 style="text-align:center">ECOMMERCE SHOPPING SOLUTIONS</h3>
+<hr />
+<div class="row" style="margin-bottom:40px">
+
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <div class="col-md-4 col-xs-6" style="height:220px;margin-top:160px">
+                <div class="shop">
+                    <div class="shop-img">
+                        <img src="@Url.Content(item.cat_image)"  style="height:280px;width:100%"  alt="">
+                    </div>
+                    <div class="shop-body">
+                        <h3>Accessories<br>Collection</h3>
+                        <a href="#" class="cta-btn"> @Html.ActionLink(item.cat_name, "DisplayAdd", new { id = item.cat_id })<i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+    }
+
+</div>
+
+<div style="margin-top:370px">
+
+    <div id="container" style="margin-left:400px">
+        <p></p>
+        <p></p>
+
+
+        <div class="pagination" style="margin-left:400px">
+            Page @(Model.PageCount < Model.PageNumber ? 0:Model.PageNumber)
+            of @Model.PageCount @Html.PagedListPager(Model, page => Url.Action("View_Category", new { page }))
+
+
+        </div>
+    </div>
+</div>
+

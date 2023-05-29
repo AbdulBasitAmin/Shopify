@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Ecommerce.Models.tbl_user>
+@{
+    ViewBag.Title = "RegisteredUser";
+}
+
+<h2>RegisteredUser</h2>
+
+<table class="table table-bordered table-borderless">
+
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>EMAIL</th>
+            <th>PASSWORD</th>
+            <th>IMAGE</th>
+            <th>CONTACT</th>
+
+        </tr>
+
+    </thead>
+
+
+    <tbody>
+        @if (Model!=null)
+
+        {
+            foreach (var item in Model)
+            {
+
+        <tr>
+            <td>@item.u_id</td>
+            <td>@item.u_name</td>
+            <td>@item.u_email</td>
+            <td>@item.u_password</td>
+            <td><img src="@Url.Content(item.u_image)" height="250" width="250" /></td>
+            <td>@item.u_contact</td>
+
+
+
+        </tr>
+
+            }
+        }
+
+    </tbody>
+
+</table> 
+

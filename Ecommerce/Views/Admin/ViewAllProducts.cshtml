@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Ecommerce.Models.ProductViewModel>
+@{
+    ViewBag.Title = "ViewAllProducts";
+}
+
+<table class="table table-bordered table-dark">
+
+    <thead>
+
+        <tr>
+            <td>CATEGORY NAME</td>
+            <td>PRODUCT NAME</td>
+            <td>PRODUCT PRICE</td>
+
+            <td>PRODUCT DESCRIPTION</td>
+
+            <td>USER NAME</td>
+
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+            
+        @if (Model!=null)
+        {
+            foreach (var item in Model)
+            {
+
+        <tr>
+
+            <td>@item.cat_name</td>
+            <td>@item.pro_name</td>
+            <td>@item.pro_desc</td>
+            <td>@item.pro_price</td>
+
+
+
+            <td>@item.u_name</td>
+
+
+        </tr>
+            }
+        }
+
+    </tbody>
+
+
+</table>
+

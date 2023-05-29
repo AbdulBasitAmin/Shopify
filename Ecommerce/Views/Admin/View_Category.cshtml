@@ -1,0 +1,52 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<Ecommerce.Models.tbl_category>
+
+
+
+@{
+    ViewBag.Title = "View_Category";
+}
+
+<h2></h2>
+
+
+<div class="row" style="margin-bottom:40px">
+
+    @if (Model!=null)
+    {
+        foreach (var item in Model)
+        {
+
+            <div class="col-lg-4 col-md-4" style="height:220px;margin-top:160px">
+
+                <img src="@Url.Content(item.cat_image)" style="height:130%;width:100%" />
+
+                <br />
+
+                <h4 style="color:#ff0000;text-align:center;margin-top:20px"> @item.cat_name</h4>
+
+
+            </div>
+        }
+
+    }
+
+</div>
+
+<div style="margin-top:370px">
+
+    <div id="container" style="margin-left:400px">
+        <p></p>
+        <p></p>
+
+
+        <div class="pagination" style="margin-left:400px">
+            Page @(Model.PageCount < Model.PageNumber ? 0:Model.PageNumber)
+
+            of @Model.PageCount @Html.PagedListPager(Model,page => Url.Action("View_Category",new { page}))
+
+
+        </div>
+    </div>
+</div>
+
